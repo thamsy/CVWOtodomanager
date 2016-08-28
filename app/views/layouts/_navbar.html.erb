@@ -1,0 +1,21 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'CVWO Assignment 3', root_path, class:"navbar-brand" %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li <% if current_page?(root_path) %> class="active" <% end %> ><%= link_to 'Home', root_path %></li>
+            <li <% if current_page?(controller:"tasks", action:"index") %> class="active" <% end %> ><%= link_to 'To do List', tasks_path %></li>
+            <li <% if current_page?(controller:"tasks", action:"new") %> class="active" <% end %> ><%= link_to 'New Task', new_task_path %></li>
+	    <li <% if current_page?(controller:"tags") %> class="active" <% end %> ><%= link_to 'Tags', tags_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

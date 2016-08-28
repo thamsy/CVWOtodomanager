@@ -1,0 +1,33 @@
+<div class="form-header">
+  <h2 class="form-title">Edit Task</h2>
+</div>
+
+  <% if @task.errors.any? %>
+    <div class="panel panel-danger">
+      <div class="panel-body">
+	<%= pluralize(@task.errors.count, "error") %>
+	prohibited this task from being saved:
+      </div>
+      <div class="panel-footer">    
+      <ul>
+	<% @task.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+
+<%= form_for @task, html: {class:'form_group', role:'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :content, 'Task' %><br>
+    <%= f.text_field :content, class:'form-control', required:true, autofocus:true  %>
+  </div>
+  <div>
+    <%= f.check_box :done %>
+    <%= f.label :done, 'Done?' %>
+  </div><br>
+  <div class="form-group">
+    <%= f.submit 'Update Task', class:'btn btn-default' %>
+  </div>
+<% end %>

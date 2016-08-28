@@ -1,0 +1,14 @@
+class Task < ActiveRecord::Base
+  has_and_belongs_to_many :tags
+  validates :content, :presence => true
+  after_destroy :check_tags
+
+  def check_tags
+    self.tags.each do |tag|
+      if tag.tasks(true).empty?
+        tag.destroy
+      end
+    end
+  end
+
+end

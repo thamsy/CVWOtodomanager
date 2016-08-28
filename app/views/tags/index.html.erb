@@ -1,0 +1,12 @@
+<div class="starter-template">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>Tags (Alphabetical) <%= image_tag "tag.png" %></h1></div>
+    <ul class="list-group">
+      <% @tags.each do |tag| %>
+      <li class="list-group-item"><%= link_to tag.name, tag_path(tag), class: 'btn btn-default' %>
+                                  <%= link_to 'Delete Tag', tag_path(tag), method: :delete, data: {confirm: 'Are you sure?'}%></li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+</div>

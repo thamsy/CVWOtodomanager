@@ -1,0 +1,23 @@
+<div class="starter-template">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1><%= @title %> <%= image_tag 'todo-list.png' %></h1></div>
+    <table class="table">
+      <tr>
+        <th>Task</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Tags</th>
+      </tr>
+      <% @tasks.each do |task| %>
+      <tr>
+        <td <% if task.done == true %>class='done'<% end %>><%= task.content %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Delete', task_path(task), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><% task.tags.each do |tag| %>
+          <%= link_to tag.name, tag_path(tag), class: 'btn btn-default' =%>
+        <% end %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

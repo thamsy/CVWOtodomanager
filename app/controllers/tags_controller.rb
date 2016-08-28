@@ -1,0 +1,25 @@
+class TagsController < ApplicationController
+  def index
+    @tags = Tag.order(:name)
+  end
+  
+  def show
+    begin
+      @tag = Tag.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to tags_path
+      return
+    end
+    @tasks = @tag.tasks
+    @title = "Tag: #{@tag.name}"
+    render "tasks/index"
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+
+    redirect_to :back
+  end
+
+end

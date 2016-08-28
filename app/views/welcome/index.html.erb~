@@ -1,0 +1,14 @@
+<div class="starter-template">
+  <h1>To Do Manager (CVWO Assignment 3)</h1>
+  <p>On the navigation bar there are 3 links. The first takes you to the list of tasks in your to-do-list, the second allows you to create new tasks, and the third allows you to see all the available tags (in alphabetical order) and select one of them which will then show only the articles which has the tag.</p><br>
+
+  <h3>First Link: To-do List</h3>
+  <p>View All the Tasks, their tags, and the option to edit or delete them</p>
+
+  <h3>Second Link: New Task</h3>
+  <p>Allows you to create a new task, and assign it tags</p>
+
+  <h3>Third Link: Tags</h3>
+  <p>Able to view all available tags in alphabetical order</p>
+  <p>May select specific tag to see all the articles that has the tag</p>
+</div>

@@ -1,0 +1,60 @@
+class TasksController < ApplicationController
+  def index
+    @tasks = Task.all
+    @title = "To-Do List"
+  end
+
+  def new
+    @task = Task.new
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def create
+    @task = Task.new(params.require(:task).permit(:content))
+    if @task.save
+      #Save relevant Tags
+      if params[:tag_names] != ''
+        tag_names = params[:tag_names].split(',')
+	tag_names.reject!(&:empty?)
+        tag_names.each do |tag_name|
+          tag_name.chomp!
+          @tag = Tag.find_or_create_by(name: tag_name)
+          @task.tags << @tag 
+        end
+      end
+      redirect_to tasks_path
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    
+    if @task.update(params.require(:task).permit(:content,:done))
+      redirect_to tasks_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @tags = @task.tags.clone
+    @tags.each do |tag|
+      tag.tasks.destroy(@task)
+      puts "Tag name: #{tag.name}, Empty?: #{tag.tasks(true).empty?}"
+      if tag.tasks(true).empty?
+        tag.destroy
+      end
+    end
+
+    @task.destroy
+
+    redirect_to :back
+  end
+
+end
